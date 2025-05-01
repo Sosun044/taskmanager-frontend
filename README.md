@@ -8,6 +8,7 @@ Teknolojiler
 Frontend: React.js, React Router, Axios, Bootstrap
 
 Backend: Spring Boot (API), PostgreSQL
+https://github.com/Sosun044/taskmanager (Backend adres)
 
 Diğer: Node.js, npm
 
@@ -29,6 +30,7 @@ mvn spring-boot:run
 
 
 Backend API'si localhost:8080'da çalışmaya başlayacaktır. Ön uç (frontend) bu API ile iletişim kurarak veri alır ve gönderir.
+
 
 2. Frontend (React.js)
 Projenin frontend kısmı, React.js kullanılarak geliştirilmiştir. Kullanıcılar arayüzü üzerinden görevleri yönetebilir.
