@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+Task Management System
+Bu proje, görev yönetimi için geliştirilmiş bir web uygulamasıdır. Kullanıcılar görevleri oluşturabilir, güncelleyebilir, silebilir ve listeleyebilir. Ayrıca, kullanıcı yönetimi de yapılabilir. React.js kullanılarak front-end tarafı geliştirilmiş, back-end ise Spring Boot ile yapılmıştır.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Proje Özeti
+Bu projede temel olarak kullanıcılar, görevler oluşturabilir ve bu görevlerin durumlarını yönetebilir. Kullanıcılar sisteme kayıt olup, farklı rollerle sisteme giriş yapabilir. Admin kullanıcıları oluşturabilir ve güncelleyebilir. Her görev için başlık, açıklama, atanacak kişi, öncelik seviyesi, tahmini süre, bitiş tarihi gibi bilgiler girilebilir.
 
-## Available Scripts
+Teknolojiler
+Frontend: React.js, React Router, Axios, Bootstrap
 
-In the project directory, you can run:
+Backend: Spring Boot (API), PostgreSQL
 
-### `npm start`
+Diğer: Node.js, npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Kurulum
+1. Backend (Spring Boot)
+Projenin backend kısmı, Spring Boot kullanarak geliştirilmiştir. API, görevler ve kullanıcılar ile ilgili işlemleri yönetmektedir.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Backend'i Çalıştırma
+Spring Boot Projesini Çalıştırma:
 
-### `npm test`
+src/main/resources/application.properties dosyasındaki veritabanı bağlantı bilgilerini güncelleyin:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+spring.datasource.url=jdbc:postgresql://localhost:5432/task_management_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
 
-### `npm run build`
+mvn spring-boot:run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Backend API'si localhost:8080'da çalışmaya başlayacaktır. Ön uç (frontend) bu API ile iletişim kurarak veri alır ve gönderir.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Frontend (React.js)
+Projenin frontend kısmı, React.js kullanılarak geliştirilmiştir. Kullanıcılar arayüzü üzerinden görevleri yönetebilir.
 
-### `npm run eject`
+Frontend'i Çalıştırma
+Bağımlılıkları Yükleme:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Projenin frontend kısmı için gerekli bağımlılıkları yüklemek için terminalde şu komutları çalıştırın:
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Frontend'i Çalıştırma:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+React uygulamasını başlatmak için aşağıdaki komutu çalıştırın:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm start
+Bu komut, uygulamayı http://localhost:3000 adresinde başlatacaktır. ona uyarlanmıştır
 
-## Learn More
+API Endpoints
+1. Kullanıcı API'leri
+POST /api/users/create - Yeni bir kullanıcı oluşturur.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+GET /api/users/list - Tüm kullanıcıları listeler.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+GET /api/users/list/{userId} - ID'sine göre kullanıcıyı getirir.
 
-### Code Splitting
+PUT /api/users/update/{userId} - Kullanıcıyı günceller.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+DELETE /api/users/delete/{userId} - Kullanıcıyı siler.
 
-### Analyzing the Bundle Size
+2. Görev API'leri
+POST /api/tasks/create - Yeni bir görev oluşturur.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+GET /api/tasks/list - Tüm görevleri listeler.
 
-### Making a Progressive Web App
+GET /api/tasks/list/{taskId} - ID'sine göre bir görevi getirir.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+PUT /api/tasks/update/{taskId} - Görevi günceller.
 
-### Advanced Configuration
+DELETE /api/tasks/delete/{taskId} - Görevi siler.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Özellikler
+1. Görev Oluşturma
+Kullanıcılar, görev başlığı, açıklaması, atanacak kişi, öncelik, bitiş tarihi ve tahmini süre gibi bilgileri girerek yeni görevler oluşturabilir.
 
-### Deployment
+2. Görev Güncelleme
+Kullanıcılar, görevlerin başlık, açıklama, atanacak kişi, durum gibi bilgilerini güncelleyebilir. Güncelleme işlemi başarılı olduktan sonra görevler güncellenir.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+3. Görev Silme
+Kullanıcılar, görevleri silebilir. Silme işlemi sonrası, görev listesi güncellenir.
 
-### `npm run build` fails to minify
+4. Görev Listeleme
+Kullanıcılar, tüm görevleri listeleyebilir. Her görevde, başlık, açıklama, atanacak kişi, öncelik, durum ve bitiş tarihi bilgileri görünür.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. Kullanıcı Yönetimi
+Admin kullanıcılar, yeni kullanıcılar oluşturabilir, mevcut kullanıcıları güncelleyebilir veya silebilir. Kullanıcılar, ad, e-posta, şifre ve rol bilgileriyle yönetilebilir.
+
+Kullanıcı Rolleri
+Admin: Kullanıcıları oluşturabilir, güncelleyebilir ve silebilir. Görevleri yönetebilir.
+
+User: Görev oluşturabilir, güncelleyebilir ve silebilir.
+
+Kullanıcı Arayüzü
+Kullanıcı Ekleme Sayfası: Admin kullanıcıları yeni kullanıcı ekleyebilir.
+
+Kullanıcı Listeleme Sayfası: Admin kullanıcıları mevcut kullanıcıları listeleyebilir.
+
+Görev Ekleme Sayfası: Kullanıcılar yeni görevler oluşturabilir.
+
+Görev Listeleme Sayfası: Kullanıcılar görevleri görüntüleyebilir.
+
+Görev Güncelleme Sayfası: Kullanıcılar mevcut görevlerini güncelleyebilir.
+
+Çalıştırma ve Geliştirme
+Bu projeyi yerelinizde çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
+
+Backend'i çalıştırın (Spring Boot ile).
+
+Frontend'i çalıştırın (React ile).
+
+Uygulamayı kullanmaya başlayın.
+
